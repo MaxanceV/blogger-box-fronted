@@ -9,21 +9,22 @@ import { provideHttpClient } from '@angular/common/http';
 import { PostService } from './services/post.service';
 
 import { PostListComponent } from './components/post-list/post-list.component';
-
+import { PostListItemComponent } from './components/post-list-item/post-list-item.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    TopBarComponent
+    TopBarComponent,
+    PostListComponent,
+    PostListItemComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
   ],
   providers: [
     provideHttpClient(),
     PostService,
-    PostListComponent
   ],
   bootstrap: [AppComponent]
 })

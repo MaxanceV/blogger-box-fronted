@@ -2,12 +2,14 @@ import { Component, OnInit } from "@angular/core";
 import { CommonModule } from '@angular/common';
 import { PostService } from "../../services/post.service";
 import { Post } from "../../data/post";
+import { PostListItemComponent } from "../post-list-item/post-list-item.component";
 
 @Component({
     selector : 'app-post-list',
     templateUrl : './post-list.component.html',
     styleUrls : ['./post-list.component.css'],
-    imports: [CommonModule]
+    standalone: false,
+    //imports: [CommonModule]
 })
 
 export class PostListComponent implements OnInit { 

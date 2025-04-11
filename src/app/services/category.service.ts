@@ -4,7 +4,9 @@ import { Observable } from "rxjs";
 import { Category } from "../data/category";
 import { environment } from "../environments/environment";
 
-@Injectable()
+@Injectable({
+    providedIn: 'root' 
+ })
 export class CategoryService{
     private categoriesUrl = `${environment.apiUrl}/v1/categories`;
     
@@ -19,10 +21,10 @@ export class CategoryService{
     }
 
     update(category: Category) : Observable<Category> {
-        return this.http.put<Category>(this.categoriesUrl + '/' + category.id, category);
+        return this.http.put<Category>(this.categoriesUrl + '/' + category.uuid, category);
     }
     
     delete(category: Category) : Observable<boolean> {
-        return this.http.delete<boolean>(this.categoriesUrl + '/' + category.id);
+        return this.http.delete<boolean>(this.categoriesUrl + '/' + category.uuid);
     }
 }

@@ -8,19 +8,13 @@ import { TopBarComponent } from './components/top-bar/top-bar.component';
 import { provideHttpClient } from '@angular/common/http';
 import { PostService } from './services/post.service';
 
-
-import { RouterModule, Routes } from '@angular/router';
 import { PostListComponent } from './components/post-list/post-list.component';
 
-const routes: Routes = [
-  {path: '', component: PostListComponent}
-]
 
 @NgModule({
   declarations: [
     AppComponent,
-    TopBarComponent,
-    PostListComponent,
+    TopBarComponent
   ],
   imports: [
     BrowserModule,
@@ -28,7 +22,8 @@ const routes: Routes = [
   ],
   providers: [
     provideHttpClient(),
-    PostService
+    PostService,
+    PostListComponent
   ],
   bootstrap: [AppComponent]
 })

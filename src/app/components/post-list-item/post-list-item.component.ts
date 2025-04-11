@@ -1,15 +1,25 @@
 import { Component, Input } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { Post } from '../../data/post';
 
 @Component({
   selector: 'app-post-list-item',
   templateUrl: './post-list-item.component.html',
   styleUrls: ['./post-list-item.component.css'],
-  standalone : false
+  standalone: false
 })
-
 export class PostListItemComponent {
-  @Input() post!: Post;
+  private _post!: Post;
 
+  @Input()
+  set post(value: Post) {
+    // On convertit la date reçue si ce n'est pas déjà un objet Date
+    if (typeof value.createdDate === 'string') {
+      value.createdDate = new Date(value.createdDate);
+    }
+    this._post = value;
+  }
+
+  get post(): Post {
+    return this._post;
+  }
 }

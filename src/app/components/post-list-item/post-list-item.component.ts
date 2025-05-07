@@ -12,12 +12,12 @@ export class PostListItemComponent {
 
   @Input()
   set post(value: Post) {
-    // On convertit la date reçue si ce n'est pas déjà un objet Date
     if (typeof value.createdDate === 'string') {
-      value.createdDate = new Date(value.createdDate);
+      value.createdDate = new Date(value.createdDate); // format ISO ok
     }
     this._post = value;
   }
+  
 
   get post(): Post {
     return this._post;

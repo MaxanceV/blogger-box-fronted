@@ -1,14 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Post } from '../data/post';
+import { Post, PostRequest } from '../data/post';
 import { environment } from '../environments/environment';
-
-export interface PostRequest {
-  title: string;
-  content: string;
-  category_id: string;
-}
 
 @Injectable({
   providedIn: 'root'

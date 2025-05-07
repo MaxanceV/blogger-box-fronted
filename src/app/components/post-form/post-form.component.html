@@ -1,69 +1,89 @@
 <div class="container mt-5">
-    <h2>Create a New Post</h2>
-  
-    <form [formGroup]="postForm" (ngSubmit)="onSubmit()">
-      <!-- Title -->
-      <div class="mb-3">
-        <label for="title" class="form-label">Title</label>
-        <input
-          id="title"
-          type="text"
-          class="form-control"
-          [ngClass]="{ 'is-invalid': f['title'].touched && f['title'].invalid }"
-          formControlName="title"
-          placeholder="Enter post title"
-        />
-        <div class="invalid-feedback" *ngIf="f['title'].errors">
-          <div *ngIf="f['title'].errors['required']">Title is required.</div>
-          <div *ngIf="f['title'].errors['minlength']">Minimum 5 characters.</div>
-          <div *ngIf="f['title'].errors['maxlength']">Maximum 150 characters.</div>
+  <h2>Create a New Post</h2>
+
+  <form [formGroup]="postForm" (ngSubmit)="onSubmit()">
+    <!-- Title -->
+    <div class="mb-3">
+      <label for="title" class="form-label">Title</label>
+      <input
+        id="title"
+        type="text"
+        class="form-control"
+        [ngClass]="{ 'is-invalid': f['title'].touched && f['title'].invalid }"
+        formControlName="title"
+        placeholder="Enter post title"
+      />
+      <div class="invalid-feedback" *ngIf="f['title'].errors">
+        <div *ngIf="f['title'].errors['required']">Title is required.</div>
+        <div *ngIf="f['title'].errors['minlength']">Minimum 5 characters.</div>
+        <div *ngIf="f['title'].errors['maxlength']">
+          Maximum 150 characters.
         </div>
       </div>
-  
-      <!-- Category -->
-      <div class="mb-3">
-        <label for="category_uuid" class="form-label">Category</label>
-        <select
-          id="category_uuid"
-          class="form-select"
-          [ngClass]="{ 'is-invalid': f['category_uuid'].touched && f['category_uuid'].invalid }"
-          formControlName="category_uuid"
-        >
-          <option value="">-- Select a category --</option>
-          <option *ngFor="let category of categories" [value]="category.uuid">
-            {{ category.name }}
-          </option>
-        </select>
-        <div class="invalid-feedback" *ngIf="f['category_uuid'].errors?.['required']">
-          Category is required.
+    </div>
+
+    <!-- Category -->
+    <div class="mb-3">
+      <label for="category_uuid" class="form-label">Category</label>
+      <select
+        id="categoryUuid"
+        class="form-select"
+        [ngClass]="{
+          'is-invalid': f['categoryUuid'].touched && f['categoryUuid'].invalid
+        }"
+        formControlName="categoryUuid"
+      >
+        <option value="">-- Select a category --</option>
+        <option *ngFor="let category of categories" [value]="category.uuid">
+          {{ category.name }}
+        </option>
+      </select>
+      <div
+        class="invalid-feedback"
+        *ngIf="f['categoryUuid'].errors?.['required']"
+      >
+        Category is required.
+      </div>
+    </div>
+
+    <!-- Content -->
+    <div class="mb-3">
+      <label for="content" class="form-label">Content</label>
+      <textarea
+        id="content"
+        class="form-control"
+        [ngClass]="{
+          'is-invalid': f['content'].touched && f['content'].invalid
+        }"
+        formControlName="content"
+        rows="6"
+        placeholder="Enter post content"
+      ></textarea>
+      <div class="invalid-feedback" *ngIf="f['content'].errors">
+        <div *ngIf="f['content'].errors['required']">Content is required.</div>
+        <div *ngIf="f['content'].errors['maxlength']">
+          Maximum 2500 characters.
         </div>
       </div>
-  
-      <!-- Content -->
-      <div class="mb-3">
-        <label for="content" class="form-label">Content</label>
-        <textarea
-          id="content"
-          class="form-control"
-          [ngClass]="{ 'is-invalid': f['content'].touched && f['content'].invalid }"
-          formControlName="content"
-          rows="6"
-          placeholder="Enter post content"
-        ></textarea>
-        <div class="invalid-feedback" *ngIf="f['content'].errors">
-          <div *ngIf="f['content'].errors['required']">Content is required.</div>
-          <div *ngIf="f['content'].errors['maxlength']">Maximum 2500 characters.</div>
-        </div>
-      </div>
-  
-      <!-- Submit Button -->
+    </div>
+
+    <!-- Submit + Cancel Buttons -->
+    <div class="d-flex gap-2 mt-3">
       <button
-        class="btn btn-primary"
+        class="btn btn-success"
         type="submit"
         [disabled]="postForm.invalid || isSubmitting"
       >
         {{ isSubmitting ? 'Submitting...' : 'Submit' }}
       </button>
-    </form>
-  </div>
-  
+
+      <button
+        class="btn btn-outline-danger"
+        type="button"
+        (click)="onCancel()"
+      >
+        Cancel
+      </button>
+    </div>
+  </form>
+</div>

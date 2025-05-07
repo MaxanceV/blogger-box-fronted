@@ -24,7 +24,8 @@ post: any;
 
     loadPosts(): void {
         this.postService.getPosts().subscribe(posts => {
-            this.posts = posts;
+          this.posts = posts.sort((a, b) => new Date(b.createdDate).getTime() - new Date(a.createdDate).getTime());
         });
-    }
+      }
+      
 }
